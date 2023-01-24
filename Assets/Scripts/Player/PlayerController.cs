@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Impulse() {
+        _rb2d.velocity = Vector2.zero;
         _rb2d.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
     }
 
