@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  _variationYposition: 0.8
 --- !u!1001 &3366463609365414028
 PrefabInstance:
   m_ObjectHideFlags: 0
