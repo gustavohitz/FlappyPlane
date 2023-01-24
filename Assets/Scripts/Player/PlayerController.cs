@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float impulseForce = 10f;
-    private Rigidbody2D rb2d;
+
+    private Rigidbody2D _rb2d;
 
     void Awake() {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Update() {
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Impulse() {
-        rb2d.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
+        _rb2d.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
     }
 
 }
