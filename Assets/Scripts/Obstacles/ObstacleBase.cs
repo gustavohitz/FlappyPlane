@@ -7,7 +7,7 @@ public class ObstacleBase : MonoBehaviour {
     public float speed = .3f;
 
     void Update() {
-        transform.Translate(Vector3.left * speed);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
    
 }
