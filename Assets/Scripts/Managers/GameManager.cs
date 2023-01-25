@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverImage;
     public Text scoreTxt;
+    public AudioClip scoreSfx;
 
     private PlayerController _player;
     private int score;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
     public void AddScore() {
         score++;
         scoreTxt.text = score.ToString();
+        AudioManager.instance.PlayOneShot(scoreSfx);
     }
    
 }
