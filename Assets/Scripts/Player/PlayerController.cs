@@ -8,9 +8,14 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D _rb2d;
     private GameManager _gameManager;
+    private Vector3 _initialPosition;
 
     void Awake() {
         _rb2d = GetComponent<Rigidbody2D>();
+        _initialPosition = transform.position;
+    }
+
+    void Start() {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
@@ -30,4 +35,8 @@ public class PlayerController : MonoBehaviour {
         _gameManager.GameOver();
     }
 
+    public void ResetPosition() {
+        _rb2d.simulated = true;
+        transform.position = _initialPosition;
+    }
 }

@@ -22,5 +22,9 @@ public class ObstacleBase : MonoBehaviour {
     void DestroyObstacle() {
         Destroy(gameObject, _timeToDestroy);
     }
+
+    public void DestroyImmediately() {
+        Destroy(gameObject);
+    }
    
 }
