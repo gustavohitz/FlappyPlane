@@ -8,6 +8,7 @@ public class ObstacleBase : MonoBehaviour {
 
     [SerializeField]
     private float _variationYposition;
+    private float _timeToDestroy = 6f;
 
     void Awake() {
         transform.Translate(Vector3.up * Random.Range(-_variationYposition, _variationYposition));
@@ -15,6 +16,11 @@ public class ObstacleBase : MonoBehaviour {
 
     void Update() {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
+        DestroyObstacle();
+    }
+
+    void DestroyObstacle() {
+        Destroy(gameObject, _timeToDestroy);
     }
    
 }
