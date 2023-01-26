@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public AudioClip scoreSfx;
 
     private PlayerController _player;
-    private int score;
+    private int _score;
 
     void Start() {
         _player = GameObject.FindObjectOfType<PlayerController>();
@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour {
         }
     }
     void ResetScore() {
-        score = 0;
-        scoreTxt.text = score.ToString();
+        _score = 0;
+        scoreTxt.text = _score.ToString();
     }
 
     public void GameOver() {
@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour {
         ResetScore();
     }
     public void AddScore() {
-        score++;
-        scoreTxt.text = score.ToString();
+        _score++;
+        scoreTxt.text = _score.ToString();
         AudioManager.instance.PlayOneShot(scoreSfx);
     }
    
