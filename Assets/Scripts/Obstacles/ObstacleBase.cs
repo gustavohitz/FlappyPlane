@@ -11,7 +11,7 @@ public class ObstacleBase : MonoBehaviour {
     private float _timeToDestroy = 6f;
     private Vector3 _playerPosition;
     private bool _hasScored;
-    private GameManager _gameManager;
+    private ScoreUI _scoreUI;
 
     void Awake() {
         transform.Translate(Vector3.up * Random.Range(-_variationYposition, _variationYposition));
@@ -19,7 +19,7 @@ public class ObstacleBase : MonoBehaviour {
 
     void Start() {
         _playerPosition = GameObject.FindObjectOfType<PlayerController>().transform.position;
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
     }
 
     void Update() {
@@ -34,7 +34,7 @@ public class ObstacleBase : MonoBehaviour {
     void AddOnePoint() {
         if(!_hasScored && transform.position.x < _playerPosition.x) {
             _hasScored = true;
-            _gameManager.AddScore();
+            _scoreUI.AddScore();
         }
     }
 

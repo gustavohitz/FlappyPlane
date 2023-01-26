@@ -5,18 +5,16 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public GameObject gameOverImage;
-    public Text scoreTxt;
-    public Text hiScoreTxt;
-    public AudioClip scoreSfx;
-
     private PlayerController _player;
-    private HandAnimationController _handAnimation;
-    private int _score;
+    private GeneralUI _handUI;
+    private ScoreUI _scoreUI;
+    private GameOverUI _gameOverUI;
 
     void Start() {
         _player = GameObject.FindObjectOfType<PlayerController>();
-        _handAnimation = GameObject.FindObjectOfType<HandAnimationController>();
+        _handUI = GameObject.FindObjectOfType<GeneralUI>();
+        _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
+        _gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
     }
 
     void DestroyObjects() {
@@ -26,40 +24,19 @@ public class GameManager : MonoBehaviour {
             obstacle.DestroyImmediately();
         }
     }
-    void ResetScore() {
-        _score = 0;
-        scoreTxt.text = _score.ToString();
-    }
-    void SaveHiScore() {
-        int currentHiScore = PlayerPrefs.GetInt("hiscore");
-
-        if(_score > currentHiScore) {
-            PlayerPrefs.SetInt("hiscore", _score);
-        }  
-    }
-    void InterfaceUpdate() {
-        int hiscore = PlayerPrefs.GetInt("hiscore");
-        hiScoreTxt.text = hiscore.ToString();
-    }
 
     public void GameOver() {
         Time.timeScale = 0;
-        gameOverImage.SetActive(true);
-        SaveHiScore();
-        InterfaceUpdate();
+        _gameOverUI.ActivateGameOverPanel();
+        _scoreUI.SaveHiScore();
+        _scoreUI.InterfaceUpdate();
     }
     public void RestartGame() {
         Time.timeScale = 1;
-        gameOverImage.SetActive(false);
+        _gameOverUI.DeactivateGameOverPanel();
         _player.ResetPosition();
         DestroyObjects();
-        ResetScore();
-        _handAnimation.ShowHandClicking();
+        _scoreUI.ResetScore();
+        _handUI.ShowHandClicking();
     }
-    public void AddScore() {
-        _score++;
-        scoreTxt.text = _score.ToString();
-        AudioManager.instance.PlayOneShot(scoreSfx);
-    }
-   
 }
