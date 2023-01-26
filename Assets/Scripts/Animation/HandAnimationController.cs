@@ -20,4 +20,8 @@ public class HandAnimationController : MonoBehaviour {
         }
     }
 
+    public void ShowHandClicking() {
+        _handImage.enabled = true;
+    }
+
 }

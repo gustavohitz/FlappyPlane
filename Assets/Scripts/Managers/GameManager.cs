@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour {
     public AudioClip scoreSfx;
 
     private PlayerController _player;
+    private HandAnimationController _handAnimation;
     private int _score;
 
     void Start() {
         _player = GameObject.FindObjectOfType<PlayerController>();
+        _handAnimation = GameObject.FindObjectOfType<HandAnimationController>();
     }
 
     void DestroyObjects() {
@@ -27,10 +29,14 @@ public class GameManager : MonoBehaviour {
         _score = 0;
         scoreTxt.text = _score.ToString();
     }
+    void SaveScore() {
+        PlayerPrefs.SetInt("hiscore", _score);
+    }
 
     public void GameOver() {
         Time.timeScale = 0;
         gameOverImage.SetActive(true);
+        SaveScore();
     }
     public void RestartGame() {
         Time.timeScale = 1;
@@ -38,6 +44,7 @@ public class GameManager : MonoBehaviour {
         _player.ResetPosition();
         DestroyObjects();
         ResetScore();
+        _handAnimation.ShowHandClicking();
     }
     public void AddScore() {
         _score++;
