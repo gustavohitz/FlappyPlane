@@ -1136,7 +1136,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0000059605, y: 58.361}
-  m_SizeDelta: {x: 715.762, y: 159.6046}
+  m_SizeDelta: {x: 715.762, y: 159.60461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200251577
 MonoBehaviour:
@@ -1241,6 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverImage: {fileID: 96531778}
   scoreTxt: {fileID: 1908795420}
+  hiScoreTxt: {fileID: 1175092211}
   scoreSfx: {fileID: 8300000, guid: 7c6d759edf772194c8c328193baa344a, type: 3}
 --- !u!1 &1402273484
 GameObject:

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverImage;
     public Text scoreTxt;
+    public Text hiScoreTxt;
     public AudioClip scoreSfx;
 
     private PlayerController _player;
@@ -29,14 +30,23 @@ public class GameManager : MonoBehaviour {
         _score = 0;
         scoreTxt.text = _score.ToString();
     }
-    void SaveScore() {
-        PlayerPrefs.SetInt("hiscore", _score);
+    void SaveHiScore() {
+        int currentHiScore = PlayerPrefs.GetInt("hiscore");
+
+        if(_score > currentHiScore) {
+            PlayerPrefs.SetInt("hiscore", _score);
+        }  
+    }
+    void InterfaceUpdate() {
+        int hiscore = PlayerPrefs.GetInt("hiscore");
+        hiScoreTxt.text = hiscore.ToString();
     }
 
     public void GameOver() {
         Time.timeScale = 0;
         gameOverImage.SetActive(true);
-        SaveScore();
+        SaveHiScore();
+        InterfaceUpdate();
     }
     public void RestartGame() {
         Time.timeScale = 1;
