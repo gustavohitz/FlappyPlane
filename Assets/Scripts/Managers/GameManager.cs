@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour {
     private GeneralUI _handUI;
     private ScoreUI _scoreUI;
     private GameOverUI _gameOverUI;
+    private DifficultyManager _difficultyManager;
 
     void Start() {
         _player = GameObject.FindObjectOfType<PlayerController>();
         _handUI = GameObject.FindObjectOfType<GeneralUI>();
         _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
         _gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
     }
 
     void DestroyObjects() {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour {
     }
     public void RestartGame() {
         Time.timeScale = 1;
+        _difficultyManager.timePassed = 0;
         _gameOverUI.DeactivateGameOverPanel();
         _player.ResetPosition();
         DestroyObjects();

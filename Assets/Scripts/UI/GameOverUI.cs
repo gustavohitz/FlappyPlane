@@ -6,6 +6,7 @@ public class GameOverUI : MonoBehaviour {
 
     public GameObject gameOverImage;
 
+
     public void ActivateGameOverPanel() {
         gameOverImage.SetActive(true);
     }

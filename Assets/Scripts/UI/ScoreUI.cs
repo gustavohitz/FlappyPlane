@@ -10,6 +10,15 @@ public class ScoreUI : MonoBehaviour {
     public AudioClip scoreSfx;
 
     private int _score;
+    private int _hiScore;
+    [SerializeField]
+    private Image _rewardMedal;
+    [SerializeField]
+    private Sprite _goldMedal;
+    [SerializeField]
+    private Sprite _silverMedal;
+    [SerializeField]
+    private Sprite _bronzeMedal;
 
     public void ResetScore() {
         _score = 0;
@@ -23,13 +32,27 @@ public class ScoreUI : MonoBehaviour {
         }  
     }
     public void InterfaceUpdate() {
-        int hiscore = PlayerPrefs.GetInt("hiscore");
-        hiScoreTxt.text = hiscore.ToString();
+        _hiScore = PlayerPrefs.GetInt("hiscore");
+        hiScoreTxt.text = _hiScore.ToString();
+
+        CheckRewardMedal();
     }
     public void AddScore() {
         _score++;
         scoreTxt.text = _score.ToString();
         AudioManager.instance.PlayOneShot(scoreSfx);
+    }
+
+    void CheckRewardMedal() {
+        if(_score > _hiScore - 2) {
+            _rewardMedal.sprite = _goldMedal;
+        }
+        else if(_score > _hiScore / 2) {
+            _rewardMedal.sprite = _silverMedal;
+        }
+        else {
+            _rewardMedal.sprite = _bronzeMedal;
+        }
     }
     
 }
