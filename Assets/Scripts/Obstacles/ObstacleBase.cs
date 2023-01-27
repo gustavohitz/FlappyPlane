@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleBase : MonoBehaviour {
 
-    public float speed = .3f;
+    public FloatSharedVariable speed;
 
     [SerializeField]
     private float _variationYposition;
@@ -23,7 +23,7 @@ public class ObstacleBase : MonoBehaviour {
     }
 
     void Update() {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        transform.Translate(Vector3.left * speed.value * Time.deltaTime);
         DestroyObstacle();
         AddOnePoint();
     }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2208074582044628968}
   - component: {fileID: 2208074582044628971}
   - component: {fileID: 2208074582044628970}
-  - component: {fileID: 621478052}
   - component: {fileID: 1506898458}
   m_Layer: 0
   m_Name: chao
@@ -143,19 +142,6 @@ PolygonCollider2D:
       - {x: 4.04, y: -0.355}
       - {x: 4.04, y: 0.015}
       - {x: 4.02, y: 0.024999999}
---- !u!114 &621478052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2208074582044628969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 233258f9791c047fe8d02dd5f3d02d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
 --- !u!114 &1506898458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,4 +154,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233258f9791c047fe8d02dd5f3d02d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: {fileID: 11400000, guid: 8ad52e7708cf042f6a18ed4d3ccd20c2, type: 2}

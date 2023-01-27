@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundBase : MonoBehaviour {
     
     [SerializeField]
-    private float _speed;
+    private FloatSharedVariable _speed;
     private Vector3 _initialPosition;
     private float _realImageSize;
 
@@ -17,7 +17,7 @@ public class BackgroundBase : MonoBehaviour {
     }
 
     void Update() {
-        float moving = Mathf.Repeat(_speed * Time.time, _realImageSize);
+        float moving = Mathf.Repeat(_speed.value * Time.time, _realImageSize);
         transform.position = _initialPosition + Vector3.left * moving;
     }
 }
