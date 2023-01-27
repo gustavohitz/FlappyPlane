@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if(Input.GetButtonDown("Fire1")) {
+        if(Input.GetButtonDown("Fire1") && Time.timeScale == 1) {
             _useImpulse = true;
         }
     }
