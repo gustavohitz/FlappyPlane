@@ -5,13 +5,19 @@ using UnityEngine;
 public class ObstacleGenerator : MonoBehaviour {
    
     [SerializeField]
-    private float _timeToGenerate;
+    private float _timeToGenerateOnEasyDifficulty;
+    [SerializeField]
+    private float _timeToGenerateOnHardDifficulty;
     [SerializeField]
     private GameObject _obstaclePrefab;
     private float _timer;
+    private DifficultyManager _difficultyManager;
 
     void Awake() {
-        _timer = _timeToGenerate;
+        _timer = _timeToGenerateOnEasyDifficulty;
+    }
+    void Start() {
+        _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
     }
 
     void Update() {
@@ -24,7 +30,9 @@ public class ObstacleGenerator : MonoBehaviour {
 
     void CreateObstacle() {
         Instantiate(_obstaclePrefab, transform.position, Quaternion.identity);
-        _timer = _timeToGenerate;
+        _timer = Mathf.Lerp(_timeToGenerateOnEasyDifficulty, _timeToGenerateOnHardDifficulty, _difficultyManager.Difficulty);
+        /* Assim, é gerado um tempo entre a dificuldade fácil e 
+        a difícil de acordo com a dificuldade do jogo*/
     }
 
 }

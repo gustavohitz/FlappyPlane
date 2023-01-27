@@ -7,7 +7,7 @@ public class DifficultyManager : MonoBehaviour {
     public float timeToReachMaximumDifficulty;
 
     private float _timePassed;
-    private float _difficulty;
+    public float Difficulty { get; private set; } //só podem pegar a variável, não setar
 
     void Update() {
         IncreaseDifficultyOverTime();
@@ -15,8 +15,8 @@ public class DifficultyManager : MonoBehaviour {
 
     void IncreaseDifficultyOverTime() {
         _timePassed += Time.deltaTime;
-        _difficulty = _timePassed / timeToReachMaximumDifficulty;
-        _difficulty = Mathf.Min(1, _difficulty);
+        Difficulty = _timePassed / timeToReachMaximumDifficulty;
+        Difficulty = Mathf.Min(1, Difficulty);
         //pegamos um valor entre dois números e retornamos o menor
         //isso faz com que, assim que a difficulty for menos do que
         //1, ou seja, 100%, a dificuldade pare de aumentar.

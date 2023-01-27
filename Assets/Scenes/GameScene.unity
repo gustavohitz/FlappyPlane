@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949a51e4fe7047339ae503a2b2018f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReachMaximumDifficulty: 0
+  timeToReachMaximumDifficulty: 120
 --- !u!1 &1175092208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b640fdc2f4daa446cb43df3ea05559de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToGenerate: 3
+  _timeToGenerateOnEasyDifficulty: 5
+  _timeToGenerateOnHardDifficulty: 1
   _obstaclePrefab: {fileID: 5543042941744144290, guid: 836b1bfd8f7d544948c10aa833f0ac26,
     type: 3}
 --- !u!4 &1506898457 stripped
