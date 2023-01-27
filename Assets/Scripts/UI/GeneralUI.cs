@@ -6,9 +6,6 @@ public class GeneralUI : MonoBehaviour {
     [SerializeField]
     private GameObject _handImage;
 
-    void Awake() {
-        //_handImage = GetComponent<SpriteRenderer>();
-    }
 
     void Update() {
         HideAfterClicking();

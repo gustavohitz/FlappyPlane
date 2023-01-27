@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D _rb2d;
     private GameManager _gameManager;
     private Vector3 _initialPosition;
+    private bool _useImpulse;
 
     void Awake() {
         _rb2d = GetComponent<Rigidbody2D>();
@@ -21,6 +22,11 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if(Input.GetButtonDown("Fire1")) {
+            _useImpulse = true;
+        }
+    }
+    void FixedUpdate() {
+        if(_useImpulse) {
             Impulse();
         }
     }
@@ -28,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     void Impulse() {
         _rb2d.velocity = Vector2.zero;
         _rb2d.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
+        _useImpulse = false;
     }
 
     void OnCollisionEnter2D(Collision2D other) {
