@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour {
     private GameManager _gameManager;
     private Vector3 _initialPosition;
     private bool _useImpulse;
+    private Animator _animator;
 
     void Awake() {
+        _animator = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
         _initialPosition = transform.position;
     }
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetButtonDown("Fire1") && Time.timeScale == 1) {
             _useImpulse = true;
         }
+
+        _animator.SetFloat("speedY", _rb2d.velocity.y);
     }
     void FixedUpdate() {
         if(_useImpulse) {

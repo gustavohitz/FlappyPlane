@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;  
+using UnityEngine;
+using UnityEngine.SceneManagement;  
 
 public class GameManager : MonoBehaviour {
 
@@ -40,5 +41,8 @@ public class GameManager : MonoBehaviour {
         DestroyObjects();
         _scoreUI.ResetScore();
         _handUI.ShowHandClicking();
+    }
+    public void LoadSinglePlayerGame() {
+        SceneManager.LoadScene(1);
     }
 }
