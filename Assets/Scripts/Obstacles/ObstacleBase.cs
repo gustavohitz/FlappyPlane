@@ -8,7 +8,7 @@ public class ObstacleBase : MonoBehaviour {
 
     [SerializeField]
     private float _variationYposition;
-    private float _timeToDestroy = 6f;
+    private float _timeToDestroy = 9f;
     private Vector3 _playerPosition;
     private bool _hasScored;
     private ScoreUI _scoreUI;
