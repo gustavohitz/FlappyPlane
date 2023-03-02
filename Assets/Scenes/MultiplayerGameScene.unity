@@ -1739,7 +1739,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5644656454762581076, guid: 91a3ba03a1f434c869e582023dc9021b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 91a3ba03a1f434c869e582023dc9021b, type: 3}
 --- !u!1 &1402273484
 GameObject:
@@ -6900,6 +6901,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1808058117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808058110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24e4f4d3b5dd41bfb87aae142d33457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 3
+--- !u!114 &1808058121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808058110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5860709ae3a474e58a49b09600a07680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyToFly: 108
 --- !u!4 &1883183881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5644656454762581072, guid: 91a3ba03a1f434c869e582023dc9021b,
@@ -6926,6 +6953,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1883183887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287854774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24e4f4d3b5dd41bfb87aae142d33457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 3
+--- !u!114 &1883183891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287854774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5860709ae3a474e58a49b09600a07680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyToFly: 97
 --- !u!1 &1908795418
 GameObject:
   m_ObjectHideFlags: 0
@@ -12035,7 +12088,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5644656454762581076, guid: 91a3ba03a1f434c869e582023dc9021b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 91a3ba03a1f434c869e582023dc9021b, type: 3}
 --- !u!1001 &6314377792944313386
 PrefabInstance:

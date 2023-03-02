@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class MultiplayerController : MonoBehaviour {
 
     public float impulseForce;
 
@@ -20,13 +20,10 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        
     }
 
     void Update() {
-        if(Input.GetButtonDown("Fire1") && Time.timeScale == 1) {
-            _useImpulse = true;
-        }
-
         _animator.SetFloat("speedY", _rb2d.velocity.y);
     }
     void FixedUpdate() {
@@ -50,4 +47,5 @@ public class PlayerController : MonoBehaviour {
         _rb2d.simulated = true;
         transform.position = _initialPosition;
     }
+    
 }
