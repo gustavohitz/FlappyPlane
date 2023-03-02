@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
 
     public float impulseForce;
+    public UnityEvent OnCollidingPlane;
 
     private Rigidbody2D _rb2d;
-    private GameManager _gameManager;
     private Vector3 _initialPosition;
     private bool _useImpulse;
     private Animator _animator;
@@ -18,9 +19,6 @@ public class PlayerController : MonoBehaviour {
         _initialPosition = transform.position;
     }
 
-    void Start() {
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
-    }
 
     void Update() {
         if(Input.GetButtonDown("Fire1") && Time.timeScale == 1) {
@@ -43,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other) {
         _rb2d.simulated = false;
-        _gameManager.GameOver();
+        OnCollidingPlane.Invoke();
     }
 
     public void ResetPosition() {

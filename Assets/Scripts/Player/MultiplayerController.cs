@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MultiplayerController : MonoBehaviour {
 
     public float impulseForce;
+    public UnityEvent OnCollidingPlane;
 
     private Rigidbody2D _rb2d;
-    private GameManager _gameManager;
     private Vector3 _initialPosition;
     private bool _useImpulse;
     private Animator _animator;
@@ -18,10 +19,6 @@ public class MultiplayerController : MonoBehaviour {
         _initialPosition = transform.position;
     }
 
-    void Start() {
-        _gameManager = GameObject.FindObjectOfType<GameManager>();
-        
-    }
 
     void Update() {
         _animator.SetFloat("speedY", _rb2d.velocity.y);
@@ -40,7 +37,7 @@ public class MultiplayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other) {
         _rb2d.simulated = false;
-        _gameManager.GameOver();
+        OnCollidingPlane.Invoke();
     }
 
     public void ResetPosition() {
