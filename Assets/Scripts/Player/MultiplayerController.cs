@@ -23,6 +23,8 @@ public class MultiplayerController : MonoBehaviour {
 
     void Update() {
         _animator.SetFloat("speedY", _rb2d.velocity.y);
+
+        //ActivateAndDeactivatePhysics();
     }
     void FixedUpdate() {
         if(_useImpulse) {
@@ -48,5 +50,13 @@ public class MultiplayerController : MonoBehaviour {
         _rb2d.simulated = true;
         transform.position = _initialPosition;
     }
+    /*void ActivateAndDeactivatePhysics() {
+        if(Time.timeScale == 1) {
+            _rb2d.simulated = true;
+        }
+        else {
+            _rb2d.simulated = false;
+        }
+    }*/
     
 }

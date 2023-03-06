@@ -12,6 +12,7 @@ public class ObstacleGenerator : MonoBehaviour {
     private GameObject _obstaclePrefab;
     private float _timer;
     private DifficultyManager _difficultyManager;
+    private bool _stop;
 
     void Awake() {
         _timer = _timeToGenerateOnEasyDifficulty;
@@ -21,6 +22,10 @@ public class ObstacleGenerator : MonoBehaviour {
     }
 
     void Update() {
+        if(_stop) {
+            return;
+        }
+
         _timer -= Time.deltaTime;
 
         if(_timer <= 0) {
@@ -33,6 +38,10 @@ public class ObstacleGenerator : MonoBehaviour {
         _timer = Mathf.Lerp(_timeToGenerateOnEasyDifficulty, _timeToGenerateOnHardDifficulty, _difficultyManager.Difficulty);
         /* Assim, é gerado um tempo entre a dificuldade fácil e 
         a difícil de acordo com a dificuldade do jogo*/
+    }
+
+    public void Stop() {
+        _stop = true;
     }
 
 }
