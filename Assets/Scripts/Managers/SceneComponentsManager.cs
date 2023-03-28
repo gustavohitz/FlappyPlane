@@ -23,4 +23,11 @@ public class SceneComponentsManager : MonoBehaviour {
         _obstacleGenerator.Stop();
     }
 
+    public void ActivateSceneElements() {
+        _multiplayerBackground.enabled = true;
+        _multiplayerGround.enabled = true;
+
+        _obstacleGenerator.Restart();
+    }
+
 }

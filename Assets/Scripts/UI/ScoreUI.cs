@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ScoreUI : MonoBehaviour {
 
     public Text scoreTxt;
     public Text hiScoreTxt;
     public AudioClip scoreSfx;
+    public UnityEvent OnScoring;
 
     private int _score;
     private int _hiScore;
@@ -41,6 +43,7 @@ public class ScoreUI : MonoBehaviour {
         _score++;
         scoreTxt.text = _score.ToString();
         AudioManager.instance.PlayOneShot(scoreSfx);
+        OnScoring.Invoke();
     }
 
     void CheckRewardMedal() {

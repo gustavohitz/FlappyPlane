@@ -8,6 +8,7 @@ public class MultiplayerController : MonoBehaviour {
     public float impulseForce;
     public UnityEvent OnCollidingPlane;
     public UnityEvent OnPassingThroughObstacle;
+    public bool isCrashed;
 
     private Rigidbody2D _rb2d;
     private Vector3 _initialPosition;
@@ -23,8 +24,6 @@ public class MultiplayerController : MonoBehaviour {
 
     void Update() {
         _animator.SetFloat("speedY", _rb2d.velocity.y);
-
-        //ActivateAndDeactivatePhysics();
     }
     void FixedUpdate() {
         if(_useImpulse) {
@@ -40,6 +39,7 @@ public class MultiplayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other) {
         _rb2d.simulated = false;
+        isCrashed = true;
         OnCollidingPlane.Invoke();
     }
     void OnTriggerEnter2D(Collider2D other) {
@@ -47,16 +47,8 @@ public class MultiplayerController : MonoBehaviour {
     }
 
     public void ResetPosition() {
+        isCrashed = false;
         _rb2d.simulated = true;
         transform.position = _initialPosition;
-    }
-    /*void ActivateAndDeactivatePhysics() {
-        if(Time.timeScale == 1) {
-            _rb2d.simulated = true;
-        }
-        else {
-            _rb2d.simulated = false;
-        }
-    }*/
-    
+    } 
 }

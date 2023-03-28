@@ -44,4 +44,8 @@ public class ObstacleGenerator : MonoBehaviour {
         _stop = true;
     }
 
+    public void Restart() {
+        _stop = false;
+    }
+
 }

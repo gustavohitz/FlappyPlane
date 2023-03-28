@@ -5,18 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MultiplayerGameManager : MonoBehaviour {
 
-    private MultiplayerController _multiplayerController;
     private GeneralUI _handUI;
     private ScoreUI _scoreUI;
     private GameOverUI _gameOverUI;
     private DifficultyManager _difficultyManager;
+    private SceneComponentsManager[] _sceneComponents;
+    private MultiplayerController[] _multiplayerController;
+    private bool _OnePlayerIsDead;
+    private bool _becomeParent;
+    private int _scoreSinceDeath;
 
     void Start() {
-        _multiplayerController = GameObject.FindObjectOfType<MultiplayerController>();
         _handUI = GameObject.FindObjectOfType<GeneralUI>();
         _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
         _gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
         _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
+        _sceneComponents = GameObject.FindObjectsOfType<SceneComponentsManager>();
+        _multiplayerController = GameObject.FindObjectsOfType<MultiplayerController>();
     }
 
     void DestroyObjects() {
@@ -37,7 +42,6 @@ public class MultiplayerGameManager : MonoBehaviour {
         Time.timeScale = 1;
         _difficultyManager.timePassed = 0;
         _gameOverUI.DeactivateGameOverPanel();
-        _multiplayerController.ResetPosition();
         DestroyObjects();
         _scoreUI.ResetScore();
         _handUI.ShowHandClicking();
@@ -45,4 +49,30 @@ public class MultiplayerGameManager : MonoBehaviour {
     public void LoadSinglePlayerGame() {
         SceneManager.LoadScene(1);
     }
-}
+
+    public void OnePlayerIsDeadWarning() {
+        _OnePlayerIsDead = true;
+        _scoreSinceDeath = 0;
+    }
+
+    public void ReviveIfNecessary() {
+        if(_OnePlayerIsDead) {
+            _scoreSinceDeath++;
+            if(_scoreSinceDeath >= 2) {
+                RevivePlayer();
+            }
+        }
+    }
+
+    void RevivePlayer() {
+        foreach(var sceneComponents in _sceneComponents) {
+            sceneComponents.ActivateSceneElements();
+        }
+
+        foreach(var multiplayerController in _multiplayerController) {
+            if(multiplayerController.isCrashed == true) {
+                multiplayerController.ResetPosition();
+            }
+        }
+    }
+}    
