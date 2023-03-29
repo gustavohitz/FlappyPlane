@@ -14,6 +14,9 @@ public class MultiplayerGameManager : MonoBehaviour {
     private bool _OnePlayerIsDead;
     private bool _becomeParent;
     private int _scoreSinceDeath;
+    private InactiveCanvasUI _inactiveInterface;
+
+    public int amountOfPointsToRevive;
 
     void Start() {
         _handUI = GameObject.FindObjectOfType<GeneralUI>();
@@ -22,6 +25,7 @@ public class MultiplayerGameManager : MonoBehaviour {
         _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
         _sceneComponents = GameObject.FindObjectsOfType<SceneComponentsManager>();
         _multiplayerController = GameObject.FindObjectsOfType<MultiplayerController>();
+        _inactiveInterface = GameObject.FindObjectOfType<InactiveCanvasUI>();
     }
 
     void DestroyObjects() {
@@ -39,26 +43,39 @@ public class MultiplayerGameManager : MonoBehaviour {
         _scoreUI.InterfaceUpdate();
     }
     public void RestartGame() {
+        _OnePlayerIsDead = false;
         Time.timeScale = 1;
         _difficultyManager.timePassed = 0;
         _gameOverUI.DeactivateGameOverPanel();
         DestroyObjects();
         _scoreUI.ResetScore();
         _handUI.ShowHandClicking();
+        RevivePlayer();
     }
     public void LoadSinglePlayerGame() {
         SceneManager.LoadScene(1);
     }
 
-    public void OnePlayerIsDeadWarning() {
-        _OnePlayerIsDead = true;
-        _scoreSinceDeath = 0;
+    public void OnePlayerIsDeadWarning(Camera camera) {
+        if(_OnePlayerIsDead) {
+            _inactiveInterface.HideUI();
+            GameOver();
+        }
+        else {
+            _OnePlayerIsDead = true;
+            _scoreSinceDeath = 0;
+            _inactiveInterface.UpdateText(amountOfPointsToRevive);
+            _inactiveInterface.ShowUI(camera);
+        }
     }
 
     public void ReviveIfNecessary() {
         if(_OnePlayerIsDead) {
             _scoreSinceDeath++;
-            if(_scoreSinceDeath >= 2) {
+            _inactiveInterface.UpdateText(amountOfPointsToRevive - _scoreSinceDeath);
+            if(_scoreSinceDeath >= amountOfPointsToRevive) {
+                _OnePlayerIsDead = false;
+                _inactiveInterface.HideUI();
                 RevivePlayer();
             }
         }
