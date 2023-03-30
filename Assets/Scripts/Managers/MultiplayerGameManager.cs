@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MultiplayerGameManager : MonoBehaviour {
 
-    private GeneralUI _handUI;
     private ScoreUI _scoreUI;
     private GameOverUI _gameOverUI;
     private DifficultyManager _difficultyManager;
@@ -19,13 +18,15 @@ public class MultiplayerGameManager : MonoBehaviour {
     public int amountOfPointsToRevive;
 
     void Start() {
-        _handUI = GameObject.FindObjectOfType<GeneralUI>();
         _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
         _gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
         _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
         _sceneComponents = GameObject.FindObjectsOfType<SceneComponentsManager>();
         _multiplayerController = GameObject.FindObjectsOfType<MultiplayerController>();
         _inactiveInterface = GameObject.FindObjectOfType<InactiveCanvasUI>();
+    }
+    void Update() {
+        LoadMainMenu();
     }
 
     void DestroyObjects() {
@@ -49,7 +50,6 @@ public class MultiplayerGameManager : MonoBehaviour {
         _gameOverUI.DeactivateGameOverPanel();
         DestroyObjects();
         _scoreUI.ResetScore();
-        _handUI.ShowHandClicking();
         RevivePlayer();
     }
     public void LoadSinglePlayerGame() {
@@ -90,6 +90,11 @@ public class MultiplayerGameManager : MonoBehaviour {
             if(multiplayerController.isCrashed == true) {
                 multiplayerController.ResetPosition();
             }
+        }
+    }
+    private void LoadMainMenu() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene(0);
         }
     }
 }    

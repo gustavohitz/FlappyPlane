@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
         _gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
         _difficultyManager = GameObject.FindObjectOfType<DifficultyManager>();
     }
+    void Update() {
+        LoadMainMenu();
+    }
 
     void DestroyObjects() {
         ObstacleBase[] obstacles = GameObject.FindObjectsOfType<ObstacleBase>();
@@ -44,5 +47,14 @@ public class GameManager : MonoBehaviour {
     }
     public void LoadSinglePlayerGame() {
         SceneManager.LoadScene(1);
+    }
+    public void LoadMultiplayerGame() {
+        SceneManager.LoadScene(2);
+    }
+
+    private void LoadMainMenu() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene(0);
+        }
     }
 }
