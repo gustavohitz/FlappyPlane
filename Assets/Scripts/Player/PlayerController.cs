@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 
     public float impulseForce;
     public UnityEvent OnCollidingPlane;
+    public UnityEvent OnPassingThroughObstacle;
 
     private Rigidbody2D _rb2d;
     private Vector3 _initialPosition;
@@ -47,5 +48,8 @@ public class PlayerController : MonoBehaviour {
     public void ResetPosition() {
         _rb2d.simulated = true;
         transform.position = _initialPosition;
+    }
+    void OnTriggerEnter2D(Collider2D other) {
+        OnPassingThroughObstacle.Invoke();
     }
 }

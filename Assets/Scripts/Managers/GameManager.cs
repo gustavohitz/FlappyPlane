@@ -51,10 +51,14 @@ public class GameManager : MonoBehaviour {
     public void LoadMultiplayerGame() {
         SceneManager.LoadScene(2);
     }
+    public void QuitGame() {
+        Application.Quit();
+    }
 
     private void LoadMainMenu() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
             SceneManager.LoadScene(0);
+            Time.timeScale = 1;
         }
     }
 }

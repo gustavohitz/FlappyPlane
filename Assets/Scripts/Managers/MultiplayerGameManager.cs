@@ -15,6 +15,8 @@ public class MultiplayerGameManager : MonoBehaviour {
     private int _scoreSinceDeath;
     private InactiveCanvasUI _inactiveInterface;
 
+    public GameObject scoreInTheMiddleOfTheScreen;
+
     public int amountOfPointsToRevive;
 
     void Start() {
@@ -42,6 +44,7 @@ public class MultiplayerGameManager : MonoBehaviour {
         _gameOverUI.ActivateGameOverPanel();
         _scoreUI.SaveHiScore();
         _scoreUI.InterfaceUpdate();
+        scoreInTheMiddleOfTheScreen.SetActive(false);
     }
     public void RestartGame() {
         _OnePlayerIsDead = false;
@@ -51,6 +54,7 @@ public class MultiplayerGameManager : MonoBehaviour {
         DestroyObjects();
         _scoreUI.ResetScore();
         RevivePlayer();
+        scoreInTheMiddleOfTheScreen.SetActive(true);
     }
     public void LoadSinglePlayerGame() {
         SceneManager.LoadScene(1);
@@ -95,6 +99,7 @@ public class MultiplayerGameManager : MonoBehaviour {
     private void LoadMainMenu() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
             SceneManager.LoadScene(0);
+            Time.timeScale = 1;
         }
     }
 }    

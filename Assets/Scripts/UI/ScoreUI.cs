@@ -8,6 +8,7 @@ public class ScoreUI : MonoBehaviour {
 
     public Text scoreTxt;
     public Text hiScoreTxt;
+    public Text gameOverScoreTxt;
     public AudioClip scoreSfx;
     public UnityEvent OnScoring;
 
@@ -25,6 +26,7 @@ public class ScoreUI : MonoBehaviour {
     public void ResetScore() {
         _score = 0;
         scoreTxt.text = _score.ToString();
+        gameOverScoreTxt.text = _score.ToString();
     }
     public void SaveHiScore() {
         int currentHiScore = PlayerPrefs.GetInt("hiscore");
@@ -42,7 +44,7 @@ public class ScoreUI : MonoBehaviour {
     public void AddScore() {
         _score++;
         scoreTxt.text = _score.ToString();
-        AudioManager.instance.PlayOneShot(scoreSfx);
+        gameOverScoreTxt.text = _score.ToString();
         OnScoring.Invoke();
     }
 
@@ -56,6 +58,9 @@ public class ScoreUI : MonoBehaviour {
         else {
             _rewardMedal.sprite = _bronzeMedal;
         }
+    }
+    public void PlayScoreSound() {
+        AudioManager.instance.PlayOneShot(scoreSfx);
     }
     
 }
